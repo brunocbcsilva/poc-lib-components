@@ -46,3 +46,7 @@ const { title } = defineProps({
     </div>
   </div>
 </template>
+
+<style>
+@import url('../style.css');
+</style>

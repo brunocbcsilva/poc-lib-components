@@ -1,5 +1,6 @@
 import { fileURLToPath, URL } from 'node:url'
 
+import { resolve } from 'path'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import VueDevTools from 'vite-plugin-vue-devtools'
@@ -7,13 +8,7 @@ import VueDevTools from 'vite-plugin-vue-devtools'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
-    vue({
-      template: {
-        compilerOptions: {
-          isCustomElement: (tag) => ['cm-chat-card'].includes(tag)
-        }
-      }
-    }),
+    vue({ customElement: true }),
     VueDevTools()
   ],
   define: {
@@ -23,12 +18,11 @@ export default defineConfig({
     lib: {
       entry: 'src/index.js',
       name: 'ComercLib',
-      formats: ['es', 'umd', 'cjs'],
-      fileName: (format, entryName) => `${entryName}.${format}.js`
+      fileName: 'comerc-lib'
     },
     sourcemap: true,
     target: 'esnext',
-    minify: false
+    minify: false,
   },
   resolve: {
     alias: {
